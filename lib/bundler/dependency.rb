@@ -119,8 +119,9 @@ module Bundler
 
     def current_platform?
       return true if @platforms.empty?
-      @platforms.any? do |p|
-        Bundler.current_ruby.send("#{p}?")
+      @platforms.any? do |platform|
+        next if platform.nil?
+        Bundler.current_ruby.send("#{platform}?")
       end
     end
 
